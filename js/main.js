@@ -49,8 +49,10 @@ var enemyfirefx;
 var hitfx;
 var explodefx;
 
-var playerAP = 10;
-var enemyAP = 10;
+var playerAPMax = 30;
+var playerAP = playerAPMax;
+var enemyAPMax = 10;
+var enemyAP = enemyAPMax;
 
 var playerTurn = true;
 
@@ -73,6 +75,10 @@ function create () {
     this.enemy = game.add.sprite(0, 0, 'tank1');
     this.enemy.anchor.setTo(0.5, 0.5);
     this.enemy.x += 100;
+    
+    this.enemyTwo = game.add.sprite(0, 0, 'tank1');
+    this.enemyTwo.anchor.setTo(0.5, 0.5);
+    this.enemyTwo.x += 200;
     
     upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
@@ -117,7 +123,7 @@ function update () {
         
         if(playerAP <= 0){
             playerTurn = false;
-            playerAP = 10;
+            playerAP = playerAPMax;
         }
     }
     else{
@@ -139,17 +145,31 @@ function update () {
             this.enemy.x -= 20;
         }
         
+        randomTwo = game.rnd.integerInRange(0,4);
+        if(randomTwo == 0){
+            this.enemyTwo.y += 20;
+        }
+        else if(randomTwo == 1){
+            this.enemyTwo.y -= 20;
+        }
+        else if(randomTwo == 2){
+            this.enemyTwo.x += 20;
+        }
+        else if(randomTwo == 3){
+            this.enemyTwo.x -= 20;
+        }
+        
         if(enemyAP <= 0){
             playerTurn = true;
-            enemyAP = 10;
+            enemyAP = enemyAPMax;
         }
     }    
 }
 
 function render () {
 
-    game.debug.text('PlayerAP: ' + playerAP + ' / 10', 32, 32);
-    game.debug.text('EnemyAP: ' + enemyAP + ' / 10', 32, 48);
+    game.debug.text('PlayerAP: ' + playerAP + ' / ' + playerAPMax, 32, 32);
+    game.debug.text('EnemyAP: ' + enemyAP + ' / ' + enemyAPMax, 32, 48);
 
 }
 
