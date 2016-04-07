@@ -167,9 +167,9 @@ function update () {
 }
 
 function render () {
-
-    game.debug.text('PlayerAP: ' + playerAP + ' / ' + playerAPMax, 32, 32);
-    game.debug.text('EnemyAP: ' + enemyAP + ' / ' + enemyAPMax, 32, 48);
+    game.debug.text('Arrow Keys to Move', 32, 32);
+    game.debug.text('PlayerAP: ' + playerAP + ' / ' + playerAPMax, 32, 48);
+    game.debug.text('EnemyAP: ' + enemyAP + ' / ' + enemyAPMax, 32, 64);
 
 }
 
